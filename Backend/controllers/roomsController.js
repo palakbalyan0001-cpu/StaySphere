@@ -15,10 +15,23 @@ const CreateRooms=async(req,res)=>{
 
 const getrooms=async(req,res)=>{
     try{
-        console.log("getting")
+        // console.log("getting")
        const rooms=await roomModel.find()
        console.log(rooms)
        return res.status(201).json({success:true,rooms}) 
+    }
+    catch(error){
+        return res.status(404).json({success:false})       
+    }
+}
+
+const editroom=async(req,res)=>{
+    try{
+        const {id}=req.params;
+        console.log(req.body)
+        const found=await roomModel.findOneAndUpdate({roomNumber:id},{$set:req.body})
+        console.log(found)
+        return  res.status(201).json({success:true})
     }
     catch(error){
         return res.status(404).json({success:false})       
@@ -36,4 +49,4 @@ const deleteroom=async(req,res)=>{
     }
 }
 
-module.exports={CreateRooms,getrooms,deleteroom}
+module.exports={CreateRooms,getrooms,deleteroom,editroom}

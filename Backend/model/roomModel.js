@@ -17,9 +17,11 @@ const roomSchema = new mongoose.Schema(
     images: [{ type: String }],
     status: {
       type: String,
-      enum: ["Available", "Booked", "maintenance"],
+      enum: ["Available", "Booked", "Maintenance"],
       default: "Available",
-    }
+    },
+    rating:{type:Number},
+    reviews:{type:Number},
   },
   { timestamps: true }
 );

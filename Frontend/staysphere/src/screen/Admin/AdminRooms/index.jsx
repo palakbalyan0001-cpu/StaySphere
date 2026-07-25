@@ -3,13 +3,15 @@ import { Container,Col,Row, Button, Table } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { Model } from "../../../components/Model"
 import {roomfield} from "../../../data/roomfield"
-import { Createrooms, deleteroom, getroom } from "../../../API/rooms"
+import { Createrooms, deleteroom, getroom, UpdateRoom } from "../../../API/rooms"
 import * as yup from "yup"
 export const AdminRooms=()=>{
     const [room,setroom]=useState([])
     const [modal,showModal]=useState(false)
+    const [form,setform]=useState("")
 
     const openCreate=()=>{
+        setform("")
         showModal(true)
     } 
     const initialState={
@@ -18,14 +20,33 @@ export const AdminRooms=()=>{
             pricePerNight:"",
             capacity:"",
             acNonAc:"",
+            wifi:"",
+            bedType:"",
+            description:"",
+            status:""
         }
         const CreateRoomSchema=yup.object({
                 type:yup.string().required("Please enter the type of room").min(3),
                 roomNumber:yup.number().required(),
                 pricePerNight:yup.number().required("Enter room price"),
                 capacity:yup.number().required(),
-                acNonAc:yup.string().required("Choose either Ac or NonAc")
+                acNonAc:yup.string().required("Choose either Ac or NonAc"),
+
         })
+
+        const Updateroom=async(values)=>{
+            try{
+                console.log(values.roomNumber)
+                await UpdateRoom(values,values.roomNumber)
+                const res=await getroom()
+                setroom(res.data.rooms)
+                showModal(false)
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
+
         const Createroom=async(values)=>{
             try{
                 const result=await Createrooms(values)
@@ -36,6 +57,11 @@ export const AdminRooms=()=>{
             catch(err){
                 console.log(err)
             }
+        }
+
+        const handleEdit=(data)=>{
+            setform({...data})
+            showModal(true)
         }
 
         const handleDelete=async(id)=>{
@@ -120,11 +146,20 @@ export const AdminRooms=()=>{
 
                             <td>
                             <Button
+                                onClick={()=>{handleEdit({
+                                    roomNumber:item.roomNumber,
+                                    type:item.type,
+                                    pricePerNight:item.pricePerNight,
+                                    acNonAc:item.acNonAc,
+                                    bedType:item.bedType,
+                                    wifi:item.wifi,
+                                    capacity:item.capacity,
+                                    description:item.description,
+                                    status:item.status
+                                })}}
                                 size="sm"
                                 variant="outline-warning"
-                                className="me-2"
-                            >
-                                Edit
+                                className="me-2" >Edit
                             </Button>
 
                             <Button
@@ -144,9 +179,17 @@ export const AdminRooms=()=>{
                 </Col>
             </Row>
          </Container>
-         {modal==true?<Model roomfields={roomfield} 
+         {modal==true?form!=""?
+            <Model roomfields={roomfield} 
+            initialState= {form} 
+            text="Update room"
+            handleroom={Updateroom} 
+            modalsetter={showModal}
+            validationSchema={CreateRoomSchema}/>
+            :<Model roomfields={roomfield} 
             initialState= {initialState} 
             handleroom={Createroom} 
+            text="Add room"
             modalsetter={showModal}
             validationSchema={CreateRoomSchema}/>:null}
         </>

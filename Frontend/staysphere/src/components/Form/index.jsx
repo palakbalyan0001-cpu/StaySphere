@@ -111,7 +111,6 @@ export const Formdata = (props) => {
         ))}
       </Row>
 
-      {props.text === "Add room" ? (
         <Modal.Footer  className="bg-dark text-warning">
           <Button
             variant="secondary"
@@ -124,15 +123,6 @@ export const Formdata = (props) => {
             {props.text}
           </Button>
         </Modal.Footer>
-      ) : (
-        <Button
-          type="submit"
-          variant="outline-warning"
-          className="w-100 py-2 my-4 fw-bold"
-        >
-          {props.text}
-        </Button>
-      )}
     </Form>
   );
 };
