@@ -1,0 +1,28 @@
+.register-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#eceaea;
+}
+
+.register-box{
+    width:80%;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.img img{
+    width:100%;
+    height:100%;
+    object-fit:fill;
+}
+
+.formdata{
+    background:#09111B;
+}
+
+.register-card{
+    width:85%;
+}
