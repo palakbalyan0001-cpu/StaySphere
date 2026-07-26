@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 import { Navbarr } from "../../../components/Nav";
 import { Cards } from "../../../components/Cards";
-import { getrooms } from "../../../API/rooms";
+import { getroom, getrooms } from "../../../API/rooms";
 import Footer from "../../../components/Footer/Footer";
 
 import { Col, Container, FormControl, FormGroup, Row } from "react-bootstrap";
@@ -22,9 +22,9 @@ export function Rooms(){
     useEffect(()=>{
         async function fetch(){
             try{
-                const result=await getrooms()
-                console.log("result",result)
-                setdata(result.data)
+                const result=await getroom()
+                console.log("result",result.data.rooms)
+                setdata(result.data.rooms)
             }
             catch(error){
                 console.log()
@@ -49,11 +49,11 @@ export function Rooms(){
             }
         }
         fetch()
-    },[toggle])
+    },[search])
 
     return(
         <>
-        <Container className="my-4 mx-4" fluid >
+        <Container className="my-4" >
             <Row>
                 <Col>
                 <FormGroup>
@@ -61,8 +61,8 @@ export function Rooms(){
                     type="text" value={search} onChange={handlesearch} placeholder="Search..."></FormControl>
                 </FormGroup>
                 </Col>
-                <Col><FaSearch onClick={handletoggle}/>
-                </Col>
+                {/* <Col><FaSearch onClick={handletoggle}/>
+                </Col> */}
             </Row>
         </Container>
         {console.log(show)}

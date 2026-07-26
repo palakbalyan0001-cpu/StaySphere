@@ -8,7 +8,7 @@ const roomSchema = new mongoose.Schema(
       enum: ["Single", "Double", "Deluxe", "Suite", "Family"],
       required: true,
     },
-    pricePerNight: { type: Number, required: true, min: 0 },
+    pricePerNight: { type: Number,required:true ,default:500},
     acNonAc: { type: String, enum: ["AC", "Non-AC"], default: "AC" },
     bedType: { type: String, enum: ["Single", "Double", "Queen", "King", "Twin"], default: "Double" },
     wifi:{type:Boolean,enum:["true","false"]},

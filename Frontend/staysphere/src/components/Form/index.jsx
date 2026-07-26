@@ -14,9 +14,25 @@ export const Formdata = (props) => {
     initialValues: props.initialstate,
     validationSchema: props.validationSchema,
     onSubmit: (values) => {
-      props.Submit(values, formik);
-    },
-  });
+        if (props.isMultipart) {
+          const formData = new FormData();
+
+          Object.keys(values).forEach((key) => {
+            if (key === "RoomImages") {
+              values.RoomImages.forEach((file) => {
+                formData.append("RoomImages", file);
+              });
+            } else {
+              formData.append(key, values[key]);
+            }
+          });
+
+          props.Submit(formData, formik);
+        } else {
+          props.Submit(values, formik);
+        }
+      }
+    });
 
   const renderform = (field) => {
     switch (field.type) {
@@ -75,6 +91,33 @@ export const Formdata = (props) => {
           </>
         );
 
+        case "file":
+          return (
+          <>
+            <Form.Group className="mb-3">
+              <FormLabel className="text-white">
+                {field.name}
+              </FormLabel>
+
+              <Form.Control
+                type={field.type}
+                name={field.name}
+                placeholder={field.placeholder}
+                multiple
+                onChange={(e)=>{
+                  formik.setFieldValue(field.name,Array.from(e.target.files))
+                }}
+              />
+
+              {formik.touched[field.name] && formik.errors[field.name] && (
+                <Form.Text className="text-danger">
+                  {formik.errors[field.name]}
+                </Form.Text>
+              )}
+            </Form.Group>
+          </>
+        );
+
       default:
         return (
           <>
@@ -111,7 +154,7 @@ export const Formdata = (props) => {
         ))}
       </Row>
 
-        <Modal.Footer  className="bg-dark text-warning">
+        {props.text=="Add Room"||props.text=="Update Room"?<Modal.Footer  className="bg-dark text-warning">
           <Button
             variant="secondary"
             onClick={() => props.modalsetter(false)}
@@ -122,7 +165,9 @@ export const Formdata = (props) => {
           <Button type="submit" variant="outline-warning">
             {props.text}
           </Button>
-        </Modal.Footer>
+        </Modal.Footer>:<Button type="submit" variant="outline-warning" className="w-100">
+            {props.text}
+          </Button>}
     </Form>
   );
 };

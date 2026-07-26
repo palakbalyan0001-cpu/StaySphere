@@ -9,8 +9,9 @@ import {
   Button,
 } from "react-bootstrap";
 import { FaCalendarCheck } from "react-icons/fa";
-import { getrooms } from "../../../API/rooms";
+import { getroomById, getrooms } from "../../../API/rooms";
 import { nightsBetween } from "../../../utils/helpers";
+import { IMAGE_URL } from "../../../../config";
 
 export function Booking() {
   const { id } = useParams();
@@ -71,9 +72,11 @@ export function Booking() {
     const fetch = async () => {
       try {
         console.log(id);
-        const { result } = await getrooms(id);
-        console.log(result);
-        setrooms(result);
+        const result = await getroomById(id);
+        const data=[]
+        data.push(result.data.rooms)
+        console.log(data)
+        setrooms(data);
       } catch (error) {
         console.log(error);
       }
@@ -104,14 +107,14 @@ export function Booking() {
         <Row className="g-4">
           <Col lg={8} md={12} xs={12}>
             <div>
-              {room.length > 0 ? (
+              {room && room.length>0 ? (
                 <img
                   className="img-fluid rounded w-100"
                   style={{
                     height: "clamp(220px,35vw,320px)",
                     objectFit: "cover",
                   }}
-                  src={room[0].images[0]}
+                  src={`${IMAGE_URL}${room[0].images[0]}`}
                   alt=""
                 />
               ) : null}

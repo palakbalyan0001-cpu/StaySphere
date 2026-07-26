@@ -57,5 +57,11 @@ export const roomfield = [
     name: "description",
     placeholder: "Description",
     col: 12,
+  },
+  {
+    type:"file",
+    name:"RoomImages",
+    placeholder:"choose file",
+    col:12,
   }
 ];

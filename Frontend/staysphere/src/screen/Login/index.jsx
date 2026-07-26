@@ -76,7 +76,7 @@ export function Login(){
                         className="formdata d-flex justify-content-center align-items-center"
                     >
                         <div className="register-card p-4">
-                            <Formdata fields={fields} text="Login" Submit={handleLogin} initialstate={initialState} validationSchema={loginSchema}/>
+                            <Formdata fields={fields} isMultipart={false} text="Login" Submit={handleLogin} initialstate={initialState} validationSchema={loginSchema}/>
                         </div>
                     </Col>
                 </Row>

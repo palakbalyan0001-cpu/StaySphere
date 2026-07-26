@@ -89,7 +89,8 @@ function App() {
             <Route path="/admin" element={<Dashboard />}>
             <Route index element={<Home />}></Route>
               <Route path="panel" element={<DashboardLayout links={adminLinks} title="Admin Panel" />}>
-                <Route path="dashboard" index element={<AdminDashboard/>} />
+                <Route index element={<AdminDashboard/>} />
+                <Route path="dashboard" element={<AdminDashboard/>} />
                 <Route path="rooms" element={<AdminRooms />} />
                 {/* <Route path="/admin/bookings" element={<AdminBookings />} />
                 <Route path="/admin/users" element={<AdminUsers />} />

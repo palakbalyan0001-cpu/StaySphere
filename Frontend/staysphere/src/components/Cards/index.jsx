@@ -5,6 +5,7 @@ import { FaBed, FaWifi } from "react-icons/fa";
 import "../../styles/GuestHome.css"
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { IMAGE_URL } from "../../../config";
 
 export function Cards(props){
     const {user}=useSelector(state=>state.auth)
@@ -23,7 +24,7 @@ export function Cards(props){
                 className="d-flex justify-content-center"
                 >
                 <Card
-                    className="service-card w-100 "
+                    className="service-card w-100  m-4"
                     style={{
                     maxWidth: "20rem",
                     backgroundColor: "rgba(9, 17, 27, 1)",
@@ -32,7 +33,7 @@ export function Cards(props){
                 >
                     <Card.Img
                     variant="top"
-                    src={data.images[0]}
+                    src={`${IMAGE_URL}${data.images[0]}`}
                     style={{
                         height: "14rem",
                         objectFit: "cover",
@@ -42,7 +43,7 @@ export function Cards(props){
                     <Card.Body className="d-flex flex-column">
                     <div className="d-flex justify-content-between">
                         <div>
-                        <Card.Title>{data.name}</Card.Title>
+                        <Card.Title>{data.description}</Card.Title>
                         <Card.Text className="text-warning fs-5">
                             ₹{data.pricePerNight}
                             <span className="text-secondary fs-6">/Night</span>
@@ -57,10 +58,10 @@ export function Cards(props){
                         <div className="mt-2">
                             <span
                             className={`badge ${
-                                data.availability ? "bg-success" : "bg-danger"
+                                data.status=="Available" ? "bg-success" : "bg-danger"
                             }`}
                             >
-                            {data.availability ? "Available" : "Booked"}
+                            {data.status}
                             </span>
                         </div>
                         </div>
@@ -69,8 +70,8 @@ export function Cards(props){
                     <hr />
 
                     <div className="d-flex justify-content-around mb-3">
-                        <span><FaBed /> {data.bed}</span>
-                        {data.ac && <span><MdAcUnit /> AC</span>}
+                        <span><FaBed /> {data.bedType}</span>
+                        {data.acNonAc && <span><MdAcUnit /> AC</span>}
                         {data.wifi && <span><FaWifi /> WiFi</span>}
                     </div>
 
@@ -79,9 +80,7 @@ export function Cards(props){
                         variant="outline-warning"
                         as={Link}
                         to={
-                        !user
-                            ? `/room-details/${data.id}`
-                            : `/user/room-details/${data.id}`
+                        `/room-details/${data.roomNumber}`
                         }
                     >
                         View Details

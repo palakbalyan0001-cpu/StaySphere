@@ -12,7 +12,7 @@ export const Model=(props)=>{
                 <Modal.Header className="bg-dark text-warning" closeButton closeVariant="white" onHide={()=>{props.modalsetter(false)}}>
                 <Modal.Title>Add Rooms</Modal.Title>
                 </Modal.Header>
-                <Formdata  fields={props.roomfields} modalsetter={props.modalsetter} 
+                <Formdata isMultipart={true} fields={props.roomfields} modalsetter={props.modalsetter} 
                 text={props.text} Submit={props.handleroom} initialstate={props.initialState} validationSchema={props.validationSchema} />
             </Modal>
         </>

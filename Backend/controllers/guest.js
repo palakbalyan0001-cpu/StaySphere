@@ -23,10 +23,11 @@ const postregister=async(req,res)=>{
 }
 
 const postlogin=async(req,res)=>{
+    console.log("yes")
     try{
         const {email,password}=req.body;
         const user=await Users.findOne({email:email})
-       
+       console.log(req.body)
         if (user){
            const match=await bcrypt.compare(password,user.password)
            console.log(match)

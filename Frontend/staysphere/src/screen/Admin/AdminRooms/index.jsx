@@ -28,16 +28,16 @@ export const AdminRooms=()=>{
         const CreateRoomSchema=yup.object({
                 type:yup.string().required("Please enter the type of room").min(3),
                 roomNumber:yup.number().required(),
-                pricePerNight:yup.number().required("Enter room price"),
-                capacity:yup.number().required(),
+                pricePerNight:yup.number().required("Enter room price").min(500),
+                capacity:yup.number().required().min(1),
                 acNonAc:yup.string().required("Choose either Ac or NonAc"),
 
         })
 
         const Updateroom=async(values)=>{
             try{
-                console.log(values.roomNumber)
-                await UpdateRoom(values,values.roomNumber)
+                console.log(values.get("roomNumber"))
+                await UpdateRoom(values,values.get("roomNumber"))
                 const res=await getroom()
                 setroom(res.data.rooms)
                 showModal(false)

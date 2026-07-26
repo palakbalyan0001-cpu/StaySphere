@@ -5,12 +5,15 @@ const app=express()
 const connectdb = require("./config/db")
 const authenticate = require("./middleware/authenticate")
 const cookieParser = require("cookie-parser");
-
+app.use(express.urlencoded({extended:true}))
 app.use(cookieParser());
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }));
+
+const path = require("path");
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json())
 app.get("/",authenticate,(req,res)=>{
@@ -37,3 +40,4 @@ app.listen(3000,()=>{
     console.log("server started")
     connectdb()
 })
+

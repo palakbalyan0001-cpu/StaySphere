@@ -56,7 +56,7 @@ export function Register(){
                                 <h1>Create Account</h1>
                                 <p>Join StaySphere and experience luxury</p><br />
                             </div>
-                            <Formdata fields={fields} text="Register" Submit={handleregister} initialstate={initialState} validationSchema={registerSchema}/>
+                            <Formdata isMultipart={false} fields={fields} text="Register" Submit={handleregister} initialstate={initialState} validationSchema={registerSchema}/>
                             {data.message?<p style={{color:'white'}}>{data.message}</p>:null}
                             <p  style={{color:'gold',textAlign:"center"}}>Already have an account?<Link to="/login">Login</Link></p>
                         </div>

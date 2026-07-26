@@ -29,6 +29,7 @@ export async function getrooms(id){
     }
 }
 export const getroom=()=>{return api.get("rooms")}
+export const getroomById=(id)=>{return api.get(`rooms/${id}`)}
 export const Createrooms=(data)=>{return api.post("rooms/create",data)}
 export const UpdateRoom=(data,id)=>{return api.patch(`rooms/edit/${id}`,data)}
 export const deleteroom=(id)=>{return api.delete(`rooms/${id}`)}

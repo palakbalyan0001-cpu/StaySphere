@@ -34,6 +34,7 @@ export const DashboardLayout = ({ links }) => {
     </Col>
 
     <Col className="p-3">
+    {}
       <Outlet />
     </Col>
   </Row>
