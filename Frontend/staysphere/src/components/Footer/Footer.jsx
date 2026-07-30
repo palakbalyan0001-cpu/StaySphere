@@ -12,12 +12,12 @@ import {
 const Footer = () => {
   return (
     <footer
-      className="py-5"
+      className="py-5 fixed"
       style={{ backgroundColor: "rgb(14, 23, 35)" }}
     >
       <Container fluid>
         <Row className="gy-4">
-          {/* Brand */}
+      
           <Col md={4}>
             <div className="d-flex align-items-center gap-2 mb-3">
               <FaCrown color="#D4AF37" size={22} />
@@ -72,7 +72,6 @@ const Footer = () => {
             </p>
           </Col>
 
-          {/* Quick Links */}
           <Col md={4}>
             <h5
               className="mb-3"

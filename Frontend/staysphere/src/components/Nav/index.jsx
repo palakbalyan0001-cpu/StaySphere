@@ -27,20 +27,16 @@ export function Navbarr() {
       style={{ backgroundColor: "rgba(9, 17, 27, 1)" }}
     >
       <Container fluid>
-        {/* Logo */}
         <Navbar.Brand as={Link} to="/">
           <img
             src="logo.png"
             alt="Logo"
             style={{ height: "50px", width: "180px" }}
-            className="img-fluid"
-          />
+            className="img-fluid"/>
         </Navbar.Brand>
 
-        {/* Mobile Toggle */}
         <Navbar.Toggle aria-controls="navbar-nav" />
 
-        {/* Navbar Content */}
         <Navbar.Collapse id="navbar-nav" className="font-display text-white py-2">
           {!user ? (
             <>

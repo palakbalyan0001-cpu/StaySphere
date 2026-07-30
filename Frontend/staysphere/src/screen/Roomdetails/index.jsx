@@ -120,7 +120,7 @@ export function Roomdetails(){
                     className="mb-4"
                     style={{ color: "#D4AF37",lineHeight: "1.8" }}
                     >
-                    ${prod.pricePerNight}
+                    ₹{prod.pricePerNight}
                     </h3>
 
                     <ListGroup >

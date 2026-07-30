@@ -30,11 +30,13 @@ const guestroute=require("./routes/guest")
 const userroute=require("./routes/user")
 const booking=require("./routes/booking")
 const rooms=require("./routes/rooms")
+const admin=require("./routes/admin")
 
 app.use("/home",guestroute);
 app.use("/booking",booking);
 app.use("/rooms",rooms)
 app.use("/user",userroute);
+app.use("/admin",admin)
 
 app.listen(3000,()=>{
     console.log("server started")

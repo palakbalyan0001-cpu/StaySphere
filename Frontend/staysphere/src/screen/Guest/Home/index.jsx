@@ -10,8 +10,8 @@ export function Home() {
   return (
     <Container fluid className="home-container">
       
-      <div id="hero-section">
-        <img
+      <div id="hero-section" >
+        <img img-fluid
           src={homeData.hero.image}
           alt="Hotel"
           id="hero-image"

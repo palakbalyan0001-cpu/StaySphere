@@ -8,7 +8,7 @@ export const DashboardLayout = ({ links }) => {
     <Col
       xs="auto"
       className="bg-dark border-top border-warning"
-      style={{ width: "220px", minHeight: "100vh" }}
+      style={{ width: "200px", minHeight: "100vh" }}
     >
       <div className="p-3">
         <div className="d-flex flex-column gap-2">
@@ -34,7 +34,6 @@ export const DashboardLayout = ({ links }) => {
     </Col>
 
     <Col className="p-3">
-    {}
       <Outlet />
     </Col>
   </Row>
