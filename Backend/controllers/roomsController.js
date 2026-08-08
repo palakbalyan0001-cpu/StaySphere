@@ -32,7 +32,7 @@ const getrooms=async(req,res)=>{
 
 const getroomById=async(req,res)=>{
     try{
-       const rooms=await roomModel.findOne({roomNumber:req.params.id})
+       const rooms=await roomModel.findOne({_id:req.params.id})
        console.log(rooms)
        return res.status(201).json({success:true,rooms}) 
     }

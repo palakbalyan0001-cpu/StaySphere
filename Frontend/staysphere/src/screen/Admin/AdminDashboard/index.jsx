@@ -2,6 +2,8 @@ import { useEffect ,useState} from "react"
 import { Card, Container,Row,Col, CardTitle } from "react-bootstrap"
 import {FaBed, FaCalendarCheck, FaDoorClosed, FaDoorOpen, FaSpinner, FaUser} from "react-icons/fa"
 import { getdashboardstats } from "../../../API/adminapi"
+import {AdminBookings} from "../AdminBookings"
+import { BookingCard } from "../../../components/BookingCard"
 
 export const AdminDashboard=()=>{
 
@@ -10,10 +12,8 @@ export const AdminDashboard=()=>{
     useEffect(()=>{
         async function fetch(){
             try{
-                console.time("Dashboard API");
                 const res=await getdashboardstats()
-                console.timeEnd("Dashboard API");
-
+                
                 const icon=[<FaCalendarCheck></FaCalendarCheck>,<FaBed></FaBed>,<FaDoorOpen></FaDoorOpen>,
                 <FaDoorClosed></FaDoorClosed>,<FaDoorClosed></FaDoorClosed>,<FaUser></FaUser>]
                 const data = await Object.entries(res.data.stats).map(([title, value], index) => ({
@@ -21,7 +21,8 @@ export const AdminDashboard=()=>{
                     value,
                     icon: icon[index]
                 }));
-                setdashboardstate(data)
+                console.log(res.data.data)
+                setdashboardstate([data,res.data.data])
             }
             catch(error){
                 console.log(error)
@@ -34,8 +35,8 @@ export const AdminDashboard=()=>{
         <>
         <Container className="py-2">
             <Row className="g-4">
-                {states!=0?states.map((stats)=>{
-                    return <Col key={stats.title} lg={3} xl={3} sm={12} md={6} className="">
+                {states!=0?states[0].map((stats)=>{
+                    return <Col key={stats.title} lg={6} xl={3} sm={12} md={6} className="">
                         <Card className="bg-dark p-1 border border-warning rounded ">
                             <Card.Body>
                                 <div className="d-flex justify-content-evenly align-items-center g-4">
@@ -50,10 +51,19 @@ export const AdminDashboard=()=>{
                             </Card.Body>
                         </Card>
                     </Col>})
-                    // <p>hello</p>
                     :<FaSpinner></FaSpinner>
                 }
         </Row>
+        {states!==0?
+        // console.log("recent",states[1])
+        <div className="bg-dark m-3 p-2 rounded">
+        {states[1].map((booking)=>{
+            return <BookingCard booking={booking} />
+        })}
+        </div>
+        :null
+        }
+        {/* <AdminBookings showrecentbooking={states[1]} text="Recent Bookings"/> */}
         </Container>
         </>
     )

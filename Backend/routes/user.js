@@ -3,6 +3,6 @@ const { CreateBooking } = require("../controllers/user")
 const authenticate = require("../middleware/authenticate")
 const router=express.Router()
 
-router.post('/booking',authenticate,CreateBooking)
+router.post('/booking/:id',authenticate,CreateBooking)
 
 module.exports=router

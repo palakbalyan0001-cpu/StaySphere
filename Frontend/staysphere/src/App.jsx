@@ -19,6 +19,9 @@ import {MyBookings} from './screen/Customer/MyBookings/MyBookings'
 import { FaBed, FaCalendarAlt, FaChartBar, FaTachometerAlt, FaUsers } from 'react-icons/fa'
 import { DashboardLayout } from './layout/DashboardLayout'
 import { AdminRooms } from './screen/Admin/AdminRooms'
+import { AdminBookings } from './screen/Admin/AdminBookings'
+import { Payment} from './screen/payment'
+import { AdminReports } from './screen/Admin/AdminReports'
 
 function App() {
   const dispatch=useDispatch()
@@ -81,6 +84,7 @@ function App() {
                 <Route path='rooms' element={<Rooms />}></Route>
                 <Route path='booking/:id' element={<Booking/>}></Route>
                 <Route path='room-details/:id' element={<Roomdetails />}></Route>
+                <Route path='payment' element={<Payment />}></Route>
                 <Route path='mybooking' element={<MyBookings />}></Route>
             </Route>
 
@@ -92,9 +96,9 @@ function App() {
                 <Route index element={<AdminDashboard/>} />
                 <Route path="dashboard" element={<AdminDashboard/>} />
                 <Route path="rooms" element={<AdminRooms />} />
-                {/* <Route path="/admin/bookings" element={<AdminBookings />} />
-                <Route path="/admin/users" element={<AdminUsers />} />
-                <Route path="/admin/reports" element={<AdminReports />} /> */}
+                <Route path="bookings" element={<AdminBookings />} />
+                {/* <Route path="/admin/users" element={<AdminUsers />} /> */}
+                <Route path="reports" element={<AdminReports />} />
               </Route>
               <Route path='room-details/:id' element={<Roomdetails />}></Route>
             </Route>

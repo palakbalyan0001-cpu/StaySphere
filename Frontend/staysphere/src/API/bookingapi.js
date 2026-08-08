@@ -12,5 +12,8 @@ export const getMyBooking=async()=>{
     const {data}=await res.json();
     return data;
 }
-
-export const cancelBooking=(id)=>{api.delete(`/booking/cancel/${id}`)}
+export const getAllBookings=(params)=>api.get('/booking/all',{params})
+export const confirmBooking=(bookid)=>api.patch(`/booking/confirm/${bookid}`)
+export const checkin=(bookid)=>api.patch(`/booking/checkin/${bookid}`)
+export const checkout=(bookid)=>api.patch(`/booking/checkout/${bookid}`)
+export const cancelBooking=(bookid)=>api.patch(`/booking/cancel/${bookid}`)

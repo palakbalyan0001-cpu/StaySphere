@@ -51,14 +51,14 @@ export function Register(){
                         md={6}
                         className="formdata d-flex justify-content-center align-items-center"
                     >
-                        <div className="register-card">
-                            <div className="text-center text-white fw-bold">
-                                <h1>Create Account</h1>
-                                <p>Join StaySphere and experience luxury</p><br />
+                        <div className="register-card m-2">
+                            <div className="text-center fw-bold text-warning">
+                                <h1 >Create Account</h1>
+                                <p className="lead">Join StaySphere and experience luxury</p>
                             </div>
                             <Formdata isMultipart={false} fields={fields} text="Register" Submit={handleregister} initialstate={initialState} validationSchema={registerSchema}/>
                             {data.message?<p style={{color:'white'}}>{data.message}</p>:null}
-                            <p  style={{color:'gold',textAlign:"center"}}>Already have an account?<Link to="/login">Login</Link></p>
+                            <p  style={{color:'gold',textAlign:"center"}} className="mt-2">Already have an account?<Link to="/login">Login</Link></p>
                         </div>
 
                     </Col>

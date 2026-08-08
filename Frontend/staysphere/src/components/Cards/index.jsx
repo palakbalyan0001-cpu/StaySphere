@@ -80,7 +80,7 @@ export function Cards(props){
                         variant="outline-warning"
                         as={Link}
                         to={
-                        `/room-details/${data.roomNumber}`
+                        `/room-details/${data._id}`
                         }
                     >
                         View Details

@@ -25,7 +25,7 @@ export function Booking() {
   const nights = checkin && checkout ? nightsBetween(checkin, checkout) : 0;
   const total = room.length > 0 ? nights * room[0].pricePerNight : 0;
 
-  const handleBooking = async (checkin, checkOut) => {
+  const handleBooking = async (checkin, checkOut,roomid) => {
     seterror("");
 
     if (!checkin || !checkOut) {
@@ -47,7 +47,7 @@ export function Booking() {
       };
 
       const CreateBooking = await fetch(
-        "http://localhost:3000/user/booking",
+        `http://localhost:3000/user/booking/${roomid}`,
         {
           credentials: "include",
           method: "POST",
@@ -58,10 +58,12 @@ export function Booking() {
         }
       );
 
-      const { success } = await CreateBooking.json();
+      const { success,message } = await CreateBooking.json();
 
       if (success == true) {
         Navigate("/user/mybooking",{replace:true});
+      }else{
+        seterror(message)
       }
     } catch (error) {
       console.log(error);
@@ -71,11 +73,9 @@ export function Booking() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        console.log(id);
         const result = await getroomById(id);
         const data=[]
         data.push(result.data.rooms)
-        console.log(data)
         setrooms(data);
       } catch (error) {
         console.log(error);
@@ -159,7 +159,7 @@ export function Booking() {
             <Button
               className="w-100 py-2 mt-2"
               onClick={() => {
-                handleBooking(checkin, checkout);
+                handleBooking(checkin, checkout,id);
               }}
             >
               Confirm Booking

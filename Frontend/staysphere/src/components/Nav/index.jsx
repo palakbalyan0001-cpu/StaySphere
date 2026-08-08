@@ -4,6 +4,7 @@ import "../../styles/Nav.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/authslicer";
 import { logoutapi } from "../../API/auth";
+import { FaCrown } from "react-icons/fa";
 
 export function Navbarr() {
   const dispatch = useDispatch();
@@ -27,13 +28,19 @@ export function Navbarr() {
       style={{ backgroundColor: "rgba(9, 17, 27, 1)" }}
     >
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2 font-display fs-3 fw-bold">
+          <FaCrown className="text-warning" />
+          <span className="text-warning">StaySphere</span>
+        </Navbar.Brand>
+        {/* <Navbar.Brand as={Link} to="/" className=" d-flex align-items-center justify-content-start ">
+
+        <FaCrown className="fs-1 text-warning" ></FaCrown> 
           <img
             src="logo.png"
             alt="Logo"
             style={{ height: "50px", width: "180px" }}
             className="img-fluid"/>
-        </Navbar.Brand>
+        </Navbar.Brand> */}
 
         <Navbar.Toggle aria-controls="navbar-nav" />
 

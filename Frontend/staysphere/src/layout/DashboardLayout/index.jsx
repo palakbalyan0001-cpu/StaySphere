@@ -5,10 +5,10 @@ export const DashboardLayout = ({ links }) => {
   return (
     <Container fluid className="px-0">
   <Row className="g-0">
-    <Col
-      xs="auto"
-      className="bg-dark border-top border-warning"
-      style={{ width: "200px", minHeight: "100vh" }}
+    <Col xs={12} lg={2} md={3}
+      
+      className="bg-dark border-top border-warning "
+      // style={{ width: "200px", minHeight: "100vh" }}
     >
       <div className="p-3">
         <div className="d-flex flex-column gap-2">
@@ -33,7 +33,7 @@ export const DashboardLayout = ({ links }) => {
       </div>
     </Col>
 
-    <Col className="p-3">
+    <Col xs={12} md={9} lg={10} className="p-3">
       <Outlet />
     </Col>
   </Row>

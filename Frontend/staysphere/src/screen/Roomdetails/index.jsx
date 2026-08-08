@@ -71,8 +71,9 @@ export function Roomdetails(){
                         ))}
                     </Carousel><br />
                     {!user ?<Button variant="outline-dark" as={Link} to="/register" className="w-100">Book</Button>
-                    :data[0].status==="Available"?<Button variant="outline-dark" as={Link} to={`/user/booking/${prod.roomNumber}`} className="w-100">Book</Button>
-                    :<Button variant="outline-danger">Not Available</Button>}
+                    :<Button variant="outline-dark" as={Link} to={`/user/booking/${prod._id}`} className="w-100">Book</Button>}
+                     {/* data[0].status==="Available"?<Button variant="outline-dark" as={Link} to={`/user/booking/${prod._id}`} className="w-100">Book</Button>
+                     :<Button variant="outline-danger">Not Available</Button> */}
                     </>
                     ): (
                     <Image
