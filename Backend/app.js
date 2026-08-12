@@ -26,17 +26,24 @@ app.get("/",authenticate,(req,res)=>{
     })
 })
 
+app.get("/key", authenticate, (req, res) => {
+    res.json({ key: process.env.RAZORPAY_KEY_ID });
+});
+
 const guestroute=require("./routes/guest")
 const userroute=require("./routes/user")
 const booking=require("./routes/booking")
 const rooms=require("./routes/rooms")
 const admin=require("./routes/admin")
+const payment=require("./routes/paymentRoute")
+
 
 app.use("/home",guestroute);
 app.use("/booking",booking);
 app.use("/rooms",rooms)
 app.use("/user",userroute);
-app.use("/admin",admin)
+app.use("/admin",admin);
+app.use("/payment",payment);
 
 app.listen(3000,()=>{
     console.log("server started")

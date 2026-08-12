@@ -1,6 +1,28 @@
 const Booking = require("../model/bookingModel");
 const roomModel = require("../model/roomModel");
 
+const cron = require("node-cron");
+
+cron.schedule("*/10 * * * *", async () => {
+  try {
+    const fifteenMinutesAgo = new Date(
+      Date.now() - 15 * 60 * 1000
+    );
+
+    const result = await Booking.deleteMany({
+      status: "pending",
+      createdAt: {
+        $lt: fifteenMinutesAgo,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "Error cleaning pending bookings:",
+      error.message
+    );
+  }
+});
+
 const getMyBooking=async(req,res)=>{
     try{
         const _id=req.user.id;

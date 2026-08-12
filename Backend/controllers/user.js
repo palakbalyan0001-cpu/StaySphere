@@ -30,10 +30,9 @@ const CreateBooking=async(req,res)=>{
             status:"pending"
         }
         const id=req.params.id;
-        const booked=new Booking(Createbooking)
+        const booked = new Booking(Createbooking)
         await booked.save();
-        // await roomModel.findOneAndUpdate({_id:id},{status:"Booked"})
-        return res.status(200).json({success:true})
+        return res.status(200).json({ success: true, bookingId: booked._id });
     }
     catch(error){
         console.log(error)
