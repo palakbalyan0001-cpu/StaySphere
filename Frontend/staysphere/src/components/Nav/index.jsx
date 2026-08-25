@@ -1,5 +1,5 @@
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../styles/Nav.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/authslicer";
@@ -32,15 +32,6 @@ export function Navbarr() {
           <FaCrown className="text-warning" />
           <span className="text-warning">StaySphere</span>
         </Navbar.Brand>
-        {/* <Navbar.Brand as={Link} to="/" className=" d-flex align-items-center justify-content-start ">
-
-        <FaCrown className="fs-1 text-warning" ></FaCrown> 
-          <img
-            src="logo.png"
-            alt="Logo"
-            style={{ height: "50px", width: "180px" }}
-            className="img-fluid"/>
-        </Navbar.Brand> */}
 
         <Navbar.Toggle aria-controls="navbar-nav" />
 

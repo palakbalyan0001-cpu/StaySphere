@@ -28,7 +28,6 @@ const getBookingCount=async(req,res)=>{
 const getBookingReport=async(req,res)=>{
     try{
         const bookingReport=await Booking.aggregate([
-            // {$match:{}}
             {$group:{
                 _id:"$status",
                 count:{$sum:1}
@@ -44,7 +43,6 @@ const getBookingReport=async(req,res)=>{
 const getRoomOccupy=async(req,res)=>{
     try{
         const roomOccupy=await roomModel.aggregate([
-            // {$match:{}}
             {$group:{
                 _id:"$status",
                 count:{$sum:1}

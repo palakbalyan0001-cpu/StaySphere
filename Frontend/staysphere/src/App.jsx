@@ -97,7 +97,6 @@ function App() {
                 <Route path="dashboard" element={<AdminDashboard/>} />
                 <Route path="rooms" element={<AdminRooms />} />
                 <Route path="bookings" element={<AdminBookings />} />
-                {/* <Route path="/admin/users" element={<AdminUsers />} /> */}
                 <Route path="reports" element={<AdminReports />} />
               </Route>
               <Route path='room-details/:id' element={<Roomdetails />}></Route>
